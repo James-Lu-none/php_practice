@@ -23,26 +23,22 @@ class TreeNode {
 }
 
 class Solution {
-    function buildTree($array) {
+    function buildTree($array) {//map array into tree
         if (empty($array)) {
             return null;
         }
         $root = new TreeNode(array_shift($array));
-        $queue = [$root]; // Initialize a queue with the root node
-        // echo json_encode($array)."\n";
+        $queue = [$root];
         while (!empty($array) && !empty($queue)) {
             $currentNode = array_shift($queue);
-
             if($currentNode->val==null) continue;
 
             $newNode= new TreeNode(array_shift($array));
-            // echo json_encode($array)."\n";
             $currentNode->left= $newNode;
             array_push($queue,$newNode);
 
             if (!empty($array)) {
                 $newNode= new TreeNode(array_shift($array));
-                // echo json_encode($array)."\n";
                 $currentNode->right= $newNode;
                 array_push($queue,$newNode);
             }
@@ -50,7 +46,7 @@ class Solution {
         return $root;
     }
 
-    function unbuildTree($root){
+    function unbuildTree($root){//map tree into array
         if ($root == null) {
             return [];
         }
@@ -75,7 +71,7 @@ class Solution {
         }
         return $result;
     }
-    function invertTree($root) {
+    function invertTree($root) {//invert the tree
         if($root==null){
             return null;
         }
